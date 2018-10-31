@@ -2,7 +2,7 @@
   <div class="login_box">
      <el-form label-position="right" label-width="60px" :model="loginfrom">
       <el-form-item label="用户名">
-        <el-input v-model="loginfrom.username"></el-input>
+        <el-input v-model="loginfrom.user"></el-input>
       </el-form-item>
       <el-form-item label="密码">
         <el-input  v-model="loginfrom.password"></el-input>
@@ -18,20 +18,26 @@
 </template>
 
 <script>
+import {menu} from '@/router/index.js'
 export default {
   name: 'login',
   data () {
     return {
      loginfrom:{
-      username:'',
+      user:'',
       password:'123456'
      }
     }
   },
   methods:{
      login(data){
-        
+     
+        this.$store.dispatch('Logins',data).then(res => { 
+            
           this.$router.push({ path: '/bg' });
+        }).catch((err) => {
+ 
+        })
        
      }
   }

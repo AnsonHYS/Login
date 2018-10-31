@@ -11,7 +11,7 @@
     <el-aside width="200px">
          <el-menu class="el-menu-vertical-demo">
            	 
-             <template v-for="item in router">
+             <template v-for="item in Link">
                 <router-link  :key="item.path" :to='item.path'>
                  <el-menu-item :index="item.path">{{item.name}}</el-menu-item>
                </router-link> 
@@ -35,7 +35,7 @@ export default {
   name: "bgindex",
   data() {
     return {
-      router: [
+      Link: [
         { path: "/menu1", name: "目录1" },
         { path: "/menu2", name: "目录2" },
         { path: "/menu3", name: "目录3" }

@@ -1,16 +1,18 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import login from './modules/login';
+import logins from './modules/login';
 
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-    login,
+    logins
   },
   getters:{
-
+    user: state => state.logins.user,
+    role: state => state.logins.role,
+    router: state => state.logins.router,
   }
 });
 
