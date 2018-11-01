@@ -11,7 +11,7 @@
     <el-aside width="200px">
          <el-menu class="el-menu-vertical-demo">
            	 
-             <template v-for="item in Link">
+             <template v-for="item in router[0].children">
                 <router-link  :key="item.path" :to='item.path'>
                  <el-menu-item :index="item.path">{{item.name}}</el-menu-item>
                </router-link> 
@@ -31,20 +31,27 @@
  
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "bgindex",
   data() {
     return {
-      Link: [
-        { path: "/menu1", name: "目录1" },
-        { path: "/menu2", name: "目录2" },
-        { path: "/menu3", name: "目录3" }
-      ]
-    };
+     
+    }
   },
-  computed: {},
+  computed:{
+    ...mapGetters([
+        'router'
+    ])
+  },
   methods: {
-    logout() {}
+    logout() {
+      this.$store.dispatch('Logouts').then(() => {
+            this.$router.push({ path: '/login' });
+        }).catch(err => {
+            this.$message.error(err);
+        });
+    }
   }
 };
 </script>

@@ -14,10 +14,11 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-  console.log(store);
-  if(store.getters.role){ //判断role 是否存在
   
+  if(store.getters.role){ //判断role 是否存在
+     
     if(store.getters.router.length !== 0){  
+        
          next();
     }else{
       let newrouter
@@ -29,21 +30,26 @@ router.beforeEach((to, from, next) => {
               if(route.meta){
                 if(route.meta.role == store.getters.role){
                   return true
-                  }
+                  }else
                   return false
               }else{
                   return true
               }
           });
-          newrouter = menu
-          newrouter[0].children = newchildren
+          console.log('menu');
+          console.log(menu);
+          newrouter = menu;
+          newrouter[0].children = newchildren;
           }
-          router.addRoutes(newrouter) //添加动态路由
-          // store.dispatch('Roles',newrouter).then(res => { 
-          //     next({ ...to })
-          // }).catch(() => {       
+          
+          console.log(newrouter);
+          router.addRoutes(newrouter); //添加动态路由
+         
+          store.dispatch('Routers',newrouter).then(res => { 
+              next({ ...to });
+          }).catch(() => {       
 
-          // })
+          })
     }	  
   }else{
     if (['/login'].indexOf(to.path) !== -1) { 

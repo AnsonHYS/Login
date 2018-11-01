@@ -10,13 +10,13 @@ const logins = {
         router:[]
     }, mutations: {
         SET_USER(state,user){
-            this.state.user = user;
+            state.user = user;
         },
         SET_ROLE(state,role){
-            this.state.role = role;
+            state.role = role;
         },
         SET_ROUTER(state,router){
-            this.state.router = router;
+            state.router = router;
         }
     },actions: {
         Logins({commit},obj){
@@ -54,7 +54,7 @@ const logins = {
                  resolve(data);
                  
              }).catch(error=>{
-                 debugger;
+               
                 reject(error);
             })
         },
@@ -70,8 +70,10 @@ const logins = {
                 reject(error);
             })
         },
-        Roles({commit},newrouter){
+        Routers({commit},newrouter){
+             
             return new Promise((resolve, reject) => {
+                debugger;
                 commit('SET_ROUTER',newrouter); //存储最新路由
                 resolve(newrouter);
           }).catch(error => {
